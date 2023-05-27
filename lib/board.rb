@@ -25,4 +25,17 @@ class Board
     @cells.include?(coordinate)
   end
 
+  def valid_length?(ship, coordinates)
+    #ship length to equal coordinate number
+    ship.length == coordinates.length
+  end
+
+  def consecutive_coordinates?(ship, coordinates)
+    collector = []
+    coordinates.each do |coordinate|
+      sliced_number = coordinate[1]
+      collector << sliced_number.to_i
+    end
+    collector.each_cons(2).all? { |x, y| y == x+1}
+  end
 end
