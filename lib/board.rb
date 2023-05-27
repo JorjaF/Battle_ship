@@ -25,4 +25,36 @@ class Board
     @cells.include?(coordinate)
   end
 
+  def valid_length?(ship, coordinates)
+    #ship length to equal coordinate number
+    ship.length == coordinates.length
+  end
+
+  def consecutive_coordinates?(ship, coordinates)
+    collector = []
+    coordinates.each do |coordinate|
+      sliced_number = coordinate[1]
+      collector << sliced_number.to_i
+    end
+    collector.each_cons(2).all? { |x, y| y == x+1}
+  end
+
+  def horizonal_or_vertical?(ship, coordinates)
+    #only allow same number with consecutive letters, or same letter with consecutive numbers
+    letters = []
+    numbers = []
+    coordinates.each do |coordinate|
+      letters << coordinate[0]
+      numbers << coordinate[1]
+    end
+    
+    if letters.uniq.length == 1 && numbers.uniq.length != 1
+      true
+    elsif  
+    letters.uniq.length != 1 && numbers.uniq.length == 1
+    true
+    else
+    false
+    end
+  end
 end
