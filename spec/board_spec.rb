@@ -17,5 +17,11 @@ RSpec.describe Board do
     expect(board.valid_coordinate?("A5")).to eq(false)
     expect(board.valid_coordinate?("E1")).to eq(false)
     expect(board.valid_coordinate?("A22")).to eq(false)
+    require 'pry'; binding.pry
+  end
+  xit "has valid placement" do
+    board = Board.new
+
+    
   end
 end
