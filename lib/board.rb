@@ -47,14 +47,6 @@ class Board
       letters << coordinate[0]
       numbers << coordinate[1]
     end
-    
-    if letters.uniq.length == 1 && numbers.uniq.length != 1
-      true
-    elsif  
-    letters.uniq.length != 1 && numbers.uniq.length == 1
-    true
-    else
-    false
-    end
+    letters.uniq.length == 1 && numbers.uniq.length != 1 || letters.uniq.length != 1 && numbers.uniq.length == 1
   end
 end
