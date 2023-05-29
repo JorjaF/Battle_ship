@@ -65,45 +65,6 @@ RSpec.describe Cell do
     
     expect(cruiser.sunk?).to eq(true)
     expect(cell_2.render).to eq("X")
-  
-  
+    end
   end
 end
-
-
-
-
-
-
-# pry(main)> cell_2 = Cell.new("C3")
-# # => #<Cell:0x00007f84f0b29d10...>
-
-# pry(main)> cruiser = Ship.new("Cruiser", 3)
-# # => #<Ship:0x00007f84f0ad4fb8...>
-
-# pry(main)> cell_2.place_ship(cruiser)
-
-# pry(main)> cell_2.render
-# # => "."
-
-# # Indicate that we want to show a ship with the optional argument
-# pry(main)> cell_2.render(true)
-# # => "S"
-
-# pry(main)> cell_2.fire_upon
-
-# pry(main)> cell_2.render
-# # => "H"
-
-# pry(main)> cruiser.sunk?
-# # => false
-
-# pry(main)> cruiser.hit
-
-# pry(main)> cruiser.hit
-
-# pry(main)> cruiser.sunk?
-# # => true
-
-# pry(main)> cell_2.render
-# # => "X
