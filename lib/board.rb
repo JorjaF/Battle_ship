@@ -67,7 +67,15 @@ end
   def valid_placement?(ship, coordinates)
     valid_coordinate?(coordinates) && 
     valid_length?(ship, coordinates) && 
-    consecutive?(ship, coordinates) && 
-    horizonally_or_vertically?(ship, coordinates)
+    consecutive_coordinates?(ship, coordinates) && 
+    horizonal_or_vertical?(ship, coordinates)
+  end
+
+  def place(ship, coordinates)
+    if valid_placement?(ship, coordinates)
+      coordinates.each do |coordinate|
+        @cells[coordinate].place_ship(ship)
+      end
+    end
   end
 end
