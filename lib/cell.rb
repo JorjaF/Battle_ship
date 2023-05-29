@@ -36,7 +36,7 @@ class Cell
     elsif @ship == nil && fired_upon? == true
       "M"
     elsif @ship != nil && fired_upon? == false
-      "S"
+      show_ship == true ? "S" : "."
     elsif @ship != nil && @ship.sunk? == true
       "X"
     elsif @ship != nil && fired_upon? == true
