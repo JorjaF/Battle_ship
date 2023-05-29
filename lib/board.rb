@@ -20,7 +20,7 @@ class Board
       "D3" => Cell.new("D3"),
       "D4" => Cell.new("D4")
   }
-end
+  end
 
   def valid_coordinate?(coordinates)
     coordinates.all? do |coordinate|
@@ -68,7 +68,6 @@ end
     coordinates.all? do |coordinate|
       @cells[coordinate].ship.nil?
     end
-
   end
 
   def valid_placement?(ship, coordinates)
@@ -100,4 +99,5 @@ end
     end
     output
   end 
+
 end
