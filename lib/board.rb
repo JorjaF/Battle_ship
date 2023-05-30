@@ -55,7 +55,7 @@ end
     letters.uniq.length != 1 && numbers.uniq.length == 1
   end
 
-  def overlap?(coordinates)
+  def overlap?(ship, coordinates)
     coordinates.all? do |coordinate|
       @cells[coordinate].ship.nil?
     end
@@ -67,7 +67,7 @@ end
     valid_length?(ship, coordinates) && 
     consecutive_coordinates?(ship, coordinates) && 
     horizonal_or_vertical?(ship, coordinates) &&
-    overlap?(coordinates) 
+    overlap?(ship, coordinates) 
   end
 
   def place(ship, coordinates)
