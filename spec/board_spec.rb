@@ -17,7 +17,6 @@ RSpec.describe Board do
     expect(board.valid_coordinate?(["A5"])).to eq(false)
     expect(board.valid_coordinate?(["E1"])).to eq(false)
     expect(board.valid_coordinate?(["A22"])).to eq(false)
-    
   end
   
   it "has a valid length" do
@@ -53,9 +52,9 @@ RSpec.describe Board do
   end
 
   it "has valid placement" do
-      board = Board.new
-      cruiser = Ship.new("Cruiser", 3)
-      submarine = Ship.new("Submarine", 2)
+    board = Board.new
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
   
       expect(board.valid_placement?(cruiser, ["A1", "A2"])).to eq(false)
       expect(board.valid_placement?(submarine, ["A2", "A3", "A4"])).to eq(false)
@@ -91,9 +90,9 @@ RSpec.describe Board do
   end
 
   it "won't overlap ships" do
-  board = Board.new
-  cruiser = Ship.new("Cruiser", 3)
-  submarine = Ship.new("Submarine", 2)
+    board = Board.new
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
 
   board.place(cruiser, ["A1", "A2", "A3"])
     
