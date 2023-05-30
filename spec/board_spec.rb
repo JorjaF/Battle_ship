@@ -70,6 +70,8 @@ RSpec.describe Board do
       expect(board.valid_placement?(cruiser, ["A1", "B1", "C1"])).to eq(true)
       expect(board.valid_placement?(submarine, ["A1", "B1"])).to eq(true)
       expect(board.valid_placement?(cruiser, ["A1", "B1", "C1"])).to eq(true)
+      expect(board.valid_placement?(cruiser, ["C3", "C4", "C5"])).to eq(false)
+      # can we place something on C3, C4, C5? other edge case?
   end
 
   it "can place ships" do
@@ -96,6 +98,6 @@ RSpec.describe Board do
   board.place(cruiser, ["A1", "A2", "A3"])
   
   expect(board.valid_placement?(submarine, ["A1", "B1"])).to eq(false)
-  
+  expect(board.overlap?(submarine, ["A1", "B1"])).to eq(true) 
   end
 end

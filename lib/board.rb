@@ -32,15 +32,6 @@ end
     ship.length == coordinates.length
   end
 
-  # def consecutive?(ship, coordinates)
-  #   numbers = []
-  #   coordinates.each do |coordinate|
-    
-  #     numbers << coordinate[1].to_i
-  #   end
-  #   numbers.each_cons(2).all? { |x, y| y == x + 1}
-  # end
-
   def consecutive_coordinates?(ship, coordinates)
     letters = []
     numbers = []

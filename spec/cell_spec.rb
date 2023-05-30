@@ -67,4 +67,3 @@ RSpec.describe Cell do
     expect(cell_2.render).to eq("X")
     end
   end
-end
