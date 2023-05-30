@@ -32,15 +32,6 @@ class Board
     ship.length == coordinates.length
   end
 
-  # def consecutive?(ship, coordinates)
-  #   numbers = []
-  #   coordinates.each do |coordinate|
-    
-  #     numbers << coordinate[1].to_i
-  #   end
-  #   numbers.each_cons(2).all? { |x, y| y == x + 1}
-  # end
-
   def consecutive_coordinates?(ship, coordinates)
     letters = []
     numbers = []
@@ -64,7 +55,7 @@ class Board
     letters.uniq.length != 1 && numbers.uniq.length == 1
   end
 
-  def overlap?(coordinates)
+  def overlap?(ship, coordinates)
     coordinates.all? do |coordinate|
       @cells[coordinate].ship.nil?
     end
@@ -75,7 +66,7 @@ class Board
     valid_length?(ship, coordinates) && 
     consecutive_coordinates?(ship, coordinates) && 
     horizonal_or_vertical?(ship, coordinates) &&
-    overlap?(coordinates) 
+    overlap?(ship, coordinates) 
   end
 
   def place(ship, coordinates)

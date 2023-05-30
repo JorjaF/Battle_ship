@@ -30,16 +30,16 @@ class Cell
     end
   end
 
-  def render
-    if @ship == nil && fired_upon? == false
+  def render(show_ship = true)
+    if @ship == nil && ! fired_upon? 
       "."
-    elsif @ship == nil && fired_upon? == true
+    elsif @ship == nil && fired_upon? 
       "M"
-    elsif @ship != nil && fired_upon? == false
-      show_ship == true ? "S" : "."
-    elsif @ship != nil && @ship.sunk? == true
+    elsif @ship != nil && ! fired_upon? 
+      show_ship ? "S" : "."
+    elsif @ship != nil && @ship.sunk? 
       "X"
-    elsif @ship != nil && fired_upon? == true
+    elsif @ship != nil && fired_upon? 
       "H"
     end
   end
