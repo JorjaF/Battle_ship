@@ -102,5 +102,22 @@ class Game
 				take_turn
 			end
 		puts @computer_board.render
+		take_turn_computer
+	end
+
+	def take_turn_computer
+		cells = @player_board.cells.keys.sample
+		hits = []
+		hits << cells
+		until @player_board.valid_coordinate?(hits)
+			cells = @player_board.cells.keys.sample
+			hits << cell
+			until @player_board.cells[cells].fired_upon? == false
+				cells = @player_board.cells.keys.sample
+				hits << cells
+			end
+		end
+		@player_board.cells[cells].fire_upon
+		puts @player_board.render(true)
 	end
 end
