@@ -7,8 +7,26 @@ class Game
 		@player_board = Board.new
   end
 
+	def display_ascii_art_mini_boat 
+    files = File.open("boat.txt")
+    puts files.read
+  end
+
+	def display_ascii_art_sub 
+    files = File.open("sub.txt")
+    puts files.read
+    
+  end
+
+	def display_ascii_art_boom 
+    files = File.open("boom.txt")
+    puts files.read
+  end
+
   def main_menu
-    puts "Welcome to BATTLESHIP\n Enter p to play. Enter q to quit."
+		print  display_ascii_art_mini_boat
+		puts "    ╔═══════════════════════╗\n    ║ Welcome to BATTLESHIP ║\n    ╚═══════════════════════╝"
+		puts " Enter p to play. Enter q to quit."
     user_input = gets.downcase.chomp
     if user_input == "p"
       puts "Game on"
@@ -27,7 +45,7 @@ class Game
 		computer_submarine = Ship.new("submarine", 2)
 		computer_place_ship(computer_cruiser)
 		computer_place_ship(computer_submarine)
-		puts @computer_board.render(true)
+		# puts @computer_board.render(true)
 		puts "I have laid my ships on the grid.\n"
 		puts "You now need to lay out your ships.\n"
 		puts "The Cruiser is 3 units long, and the Submarine is 2 units long.\n"
@@ -93,15 +111,23 @@ class Game
 		hits = []
 		cell = @computer_board.cells[player_hit]
 		hits << player_hit
-			if @computer_board.valid_coordinate?(hits) == true
+			if @computer_board.valid_coordinate?(hits) == true && cell.fired_upon? == false
 				cell.fire_upon
-				puts "FIRING ON #{player_hit}!!"
-				#maybe ascii here
+				display_ascii_art_boom
+				puts "          FIRING ON #{player_hit}!!"
 			else 
 				puts "Not a valid hit"
-				take_turn
+				take_turn_player
+			end
+			if cell.render == "M"
+				puts "    Your shot on #{player_hit} was a miss!"
+			elsif cell.render == "H"
+				puts "    Your shot on #{player_hit} was a hit!"
+			elsif cell.render == "X"
+				puts "    Your shot on #{player_hit} sunk my ship!!"
 			end
 		puts @computer_board.render
+		# win_condition
 		take_turn_computer
 	end
 
@@ -118,6 +144,54 @@ class Game
 			end
 		end
 		@player_board.cells[cells].fire_upon
-		puts @player_board.render(true)
+		if @player_board.cells[cells].render == "M"
+			puts "    My shot on #{cells} was a miss!"
+		elsif @player_board.cells[cells].render == "H"
+			puts "    My shot on #{cells} was a hit!"
+		elsif @player_board.cells[cells].render == "X"
+			puts "    My shot on #{cells} sunk your ship!!"
+		end
+		win_condition
+		# take_turn_player
+	end
+	
+	def win_condition
+		
+		ship_c = @player_board.cells.values.find do |cell|
+			cell.ship != nil && cell.ship.name == "cruiser"
+		end
+		ship_s = @player_board.cells.values.find do |cell|
+			cell.ship != nil && cell.ship.name == "submarine"
+		end
+
+		comp_c = @computer_board.cells.values.find do |cell|
+			cell.ship != nil && cell.ship.name == "cruiser"
+		end
+		comp_s = @computer_board.cells.values.find do |cell|
+			cell.ship != nil && cell.ship.name == "submarine"
+		end
+
+		if ship_c.ship.sunk? && ship_s.ship.sunk?
+			puts "I won!"
+			display_ascii_art_boom
+			puts "Thanks for playing!"
+			# puts "Do you want to play again? (y/n)"
+			# user_input_2 = gets.downcase.chomp
+			# if user_input_2 == "y"
+			# 	main_menu
+			# elsif user_input_2 == "n"
+			# 	puts "Okay bye :("
+			# else
+			# 	puts "I dont understand"
+			# end
+		elsif comp_c.ship.sunk? && comp_s.ship.sunk?
+			puts "                   You won!"
+			display_ascii_art_sub
+			puts "Thanks for playing!"
+			# puts "Do you want to play again? (y/n)"
+			# user_input_2 = gets.downcase.chomp
+		else
+			take_turn_player
+		end
 	end
 end
