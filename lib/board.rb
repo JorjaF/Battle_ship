@@ -83,7 +83,7 @@ class Board
       output += "#{row} "
       ("1".."4").each do |column|
         cell=@cells["#{row}#{column}"]
-        output += (cell.ship.nil? ? "." : cell.render(show))
+        output += (cell.render(show))
         output += " "
       end
         output += "\n"
